@@ -2,6 +2,7 @@
 import sys
 from fractions import Fraction
 
+
 def geq(num, modifier=0):
 
     successes = 0
@@ -77,9 +78,11 @@ def parse_args(arguments):
     try:
         target = int(arguments[1])
     except ValueError:
-        print("ERROR: Expected target value as an integer but instead got", '"' + arguments[1] + '"')
+        print(
+            "ERROR: Expected target value as an integer but instead got",
+            '"' + arguments[1] + '"',
+        )
         sys.exit(1)
-
 
     if len(arguments) == 2:
         return {"target": target, "modifier": 0, "reroll": False, "dispell": False}
@@ -116,6 +119,7 @@ def format_nicely(success_frac):
         "(exact:",
         str(success_frac.numerator) + "/" + str(success_frac.denominator) + ")",
     )
+
 
 if __name__ == "__main__":
 
