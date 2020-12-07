@@ -73,7 +73,13 @@ def parse_args(arguments):
         show_help()
         sys.exit(0)
 
-    target = int(arguments[1])
+    target = 0
+    try:
+        target = int(arguments[1])
+    except ValueError:
+        print("ERROR: Expected target value as an integer but instead got", '"' + arguments[1] + '"')
+        sys.exit(1)
+
 
     if len(arguments) == 2:
         return {"target": target, "modifier": 0, "reroll": False, "dispell": False}
