@@ -61,7 +61,8 @@ def resolve_modifier_args(modifiers):
 
 def show_help():
 
-    print("Hello")
+    print("usage: python3 twodeesix.py <target> (+mod | -mod) (r | reroll) (d | dispell)")
+    print("See README.md for a less terse explanation.")
 
 
 def parse_args(arguments):
