@@ -38,8 +38,16 @@ $ ./2d6 10 dispell +2 reroll
 is equivalent to
 
 ```shell
-./2d6 10 r +2 d
+$ ./2d6 10 r +2 d
 63.65% (exact: 9899/15552)
+```
+
+Negative modifiers are also obviously supported:
+
+*What is the probability of completing a 9" charge with -2 to charge?*
+```shell
+$ ./2d6 9 -2
+8.33% (exact: 1/12)
 ```
 
 ## Installation
