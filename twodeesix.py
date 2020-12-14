@@ -121,24 +121,21 @@ def format_nicely(success_frac):
     )
 
 
-if __name__ == "__main__":
+def main(target, modifier, dispell, reroll):
 
-    args = parse_args(sys.argv)
-
-    success, fails, total = geq(args["target"], modifier=args["modifier"])
+    success, fails, total = geq(target, modifier=modifier)
     success_frac = Fraction(success, total)
     fail_frac = Fraction(1, 1) - success_frac
 
-    if not args["dispell"]:
-        if args["reroll"]:
+    if not dispell:
+        if reroll:
             success_frac = success_frac + (fail_frac * success_frac)
 
-        format_nicely(success_frac)
-        sys.exit(0)
+        return success_frac
 
-    ps = possible_successes(args["target"], modifier=args["modifier"])
+    ps = possible_successes(target, modifier=modifier)
 
-    if args["reroll"]:
+    if reroll:
         for tval, prob in ps.items():
             ps[tval] = prob + (fail_frac * prob)
 
@@ -150,4 +147,16 @@ if __name__ == "__main__":
     for tval in ps:
         final_success += ps[tval]
 
+    return final_success
+
+
+if __name__ == "__main__":
+
+    args = parse_args(sys.argv)
+    final_success = main(
+        target=args["target"],
+        modifier=args["modifier"],
+        dispell=args["dispell"],
+        reroll=args["reroll"],
+    )
     format_nicely(final_success)
